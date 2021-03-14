@@ -7,7 +7,7 @@ function _helpDefaultWrite()
     local VAL1=$2
 
     if [ ! -z "$VAL" ] || [ ! -z "$VAL1" ]; then
-    defaults write "${ScriptHome}/Library/Preferences/profdrluigi.FakeDate.plist" "$VAL" "$VAL1"
+    defaults write "${ScriptHome}/Library/Preferences/profdrluigi.fakedatelauncher.plist" "$VAL" "$VAL1"
     fi
 }
 
@@ -16,7 +16,7 @@ function _helpDefaultRead()
     VAL=$1
 
     if [ ! -z "$VAL" ]; then
-    defaults read "${ScriptHome}/Library/Preferences/profdrluigi.FakeDate.plist" "$VAL"
+    defaults read "${ScriptHome}/Library/Preferences/profdrluigi.fakedatelauncher.plist" "$VAL"
     fi
 }
 
