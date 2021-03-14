@@ -44,28 +44,6 @@ class ViewController: NSViewController {
         let process            = Process()
         process.launchPath     = "/bin/bash"
         process.arguments      = [path] + args
-        let outputPipe         = Pipe()
-        let filelHandler       = outputPipe.fileHandleForReading
-        process.standardOutput = outputPipe
-        
-        let group = DispatchGroup()
-        group.enter()
-        filelHandler.readabilityHandler = { pipe in
-            let data = pipe.availableData
-            if data.isEmpty { // EOF
-                filelHandler.readabilityHandler = nil
-                group.leave()
-                return
-            }
-            if let line = String(data: data, encoding: String.Encoding.utf8) {
-                DispatchQueue.main.sync {
-                    //self.output_window.string += line
-                    //self.output_window.scrollToEndOfDocument(nil)
-                }
-            } else {
-                print("Error decoding data: \(data.base64EncodedString())")
-            }
-        }
         process.launch() // Start process
         process.waitUntilExit() // Wait for process to terminate.
     }
