@@ -20,14 +20,14 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let input = "12/10/2018"
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
-        if let date = formatter.date(from: input) {
-          print(date)  // Prints:  2018-12-10 06:00:00 +0000
+        print(Date())
+        let check_date = UserDefaults.standard.object(forKey: "SelectedDate")
+        if check_date == nil{
+            UserDefaults.standard.set(Date(), forKey: "SelectedDate")
+            let str = String(decoding: Data(), as: UTF8.self)
+            UserDefaults.standard.set(str, forKey: "Bla")
         }
-
-        
+       
     }
 
     override var representedObject: Any? {
@@ -37,7 +37,11 @@ class ViewController: NSViewController {
     }
 
     @IBAction func reset_selection(_ sender: Any) {
-        UserDefaults.standard.removeObject(forKey: "SelectedDate")
+        UserDefaults.standard.set(Date(), forKey: "SelectedDate")
+    }
+    
+    @IBAction func start_app(_ sender: Any) {
+        self.syncShellExec(path: self.scriptPath, args: ["_start_app"])
     }
     
     func syncShellExec(path: String, args: [String] = []) {
@@ -48,5 +52,6 @@ class ViewController: NSViewController {
         process.waitUntilExit() // Wait for process to terminate.
     }
 
+    
 }
 

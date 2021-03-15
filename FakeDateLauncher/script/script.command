@@ -21,15 +21,15 @@ function _helpDefaultRead()
 }
 
 ScriptHome=$(echo $HOME)
-#NodeId=$( _helpDefaultRead "NodeId" )
 volume_name=$( diskutil info "$NodeId" | grep "Volume Name" | sed 's/.*://g' | xargs )
 MY_PATH="`dirname \"$0\"`"
 cd "$MY_PATH"
 
 function _start_app()
 {
+    date=$( _helpDefaultRead "SelectedDate" )
     cp ../bin/* /private/tmp/.
-    echo "blaa"
+    echo "$date"
 }
 
 $1
