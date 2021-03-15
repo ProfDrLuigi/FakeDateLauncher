@@ -29,7 +29,7 @@ cd "$MY_PATH"
 function _start_app()
 {
     cp ../bin/* /private/tmp/.
-    echo "bla"
+    echo "blaa"
 }
 
 $1
